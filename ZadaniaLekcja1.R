@@ -41,7 +41,34 @@ korelacja(wzrost, waga)
 #stworzDataFrame <- function(ile=1) W pierwszym wierszu użytkownik podaje nazwy kolumn. 
 #w kolejnych wierszach zawartość wierszy ramki danych ( tyle wierszy ile podaliśmy w argumencie ile. ile=1 oznacza, 
 #że gdy użytkownik nie poda żadnej wartości jako parametr, domyślna wartością będzie 1)
+#w kolejnych wierszach zawartość wierszy ramki danych ( tyle wierszy ile podaliśmy w argumencie ile. 
+#ile=1 oznacza, że gdy użytkownik nie poda żadnej wartości jako parametr, domyślna wartością będzie 1)
+
+stworzDataFrame<-function(ile=1){
+  nazwyKol<-readline("Podaj nazwy kolumn rozdzielone przecinkami: ")
+  kolumny<-strsplit(nazwyKol,",")
+  df<-data.frame(matrix(NA, nrow=ile, ncol=lengths(kolumny)))
+  names(df)<-t(unlist(kolumny))
+  for(column in colnames(df)){
+    for(i in 1:ile){
+      odp<-readline("Podaj wartosc wiersza: ")
+      df[i, column]<-odp
+    }}
+  View(df)
+}
+stworzDataFrame()
+
+
+
+
 
 
 #5. Napisz funkcję , która pobiera sciezkeKatalogu, nazweKolumny, jakaFunkcje, DlaIluPlikow i liczy: 
 #mean, median,min,max w zależności od podanej nazwy funkcji w argumencie, z katologu który podaliśmy i z tylu plików ilu podaliśmy dla wybranej nazwy kolumny. 
+#mean, median,min,max w zależności od podanej nazwy funkcji w argumencie, z katologu który podaliśmy 
+#i z tylu plików ilu podaliśmy dla wybranej nazwy kolumny. 
+
+
+liczZplikow <- function(sciezka,nazwaKolumny,jakaFunkcja="mean",DlaIluPlikow=1){ 
+  #...
+}
