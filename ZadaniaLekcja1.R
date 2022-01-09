@@ -39,8 +39,6 @@ korelacja(wzrost, waga)
 
 #4. Napisz funkcję zwracającą ramke danych z danych podanych przez użytkownika 
 #stworzDataFrame <- function(ile=1) W pierwszym wierszu użytkownik podaje nazwy kolumn. 
-#w kolejnych wierszach zawartość wierszy ramki danych ( tyle wierszy ile podaliśmy w argumencie ile. ile=1 oznacza, 
-#że gdy użytkownik nie poda żadnej wartości jako parametr, domyślna wartością będzie 1)
 #w kolejnych wierszach zawartość wierszy ramki danych ( tyle wierszy ile podaliśmy w argumencie ile. 
 #ile=1 oznacza, że gdy użytkownik nie poda żadnej wartości jako parametr, domyślna wartością będzie 1)
 
@@ -64,7 +62,6 @@ stworzDataFrame()
 
 
 #5. Napisz funkcję , która pobiera sciezkeKatalogu, nazweKolumny, jakaFunkcje, DlaIluPlikow i liczy: 
-#mean, median,min,max w zależności od podanej nazwy funkcji w argumencie, z katologu który podaliśmy i z tylu plików ilu podaliśmy dla wybranej nazwy kolumny. 
 #mean, median,min,max w zależności od podanej nazwy funkcji w argumencie, z katologu który podaliśmy 
 #i z tylu plików ilu podaliśmy dla wybranej nazwy kolumny. 
 
