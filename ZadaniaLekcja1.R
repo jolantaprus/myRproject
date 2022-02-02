@@ -10,7 +10,8 @@ podzielnosc<-function(x,y){
 podzielnosc(15,5)
 podzielnosc(10,3)
 
-#2. Pociąg z Lublina do Warszawy przejechał połowę drogi ze średnią prędkością 120 km/h.
+#2. Pociąg z Lublina do Warszawy przejechał połowę drogi ze średnią prędkością 
+#120 km/h.
 #Drugą połowę przejechał ze średnią prędkością 90 km/h.
 #Jaka była średnia prędkość pociągu.
 
@@ -19,8 +20,10 @@ y<-90
 z<-c(x,y)
 mean(z)
 
-#3. Utwórz funkcję obliczającą współczynnik korelacji r Pearsona dla 2 wektorów o tej samej długości.
-#Wczytaj dane plik dane.csv i oblicz współczynnik dla wagi i wzrostu. W komentarzu napisz co oznacza wynik.
+#3. Utwórz funkcję obliczającą współczynnik korelacji r Pearsona dla 2 wektorów 
+#o tej samej długości.
+#Wczytaj dane plik dane.csv i oblicz współczynnik dla wagi i wzrostu. 
+#W komentarzu napisz co oznacza wynik.
 
 korelacja<-function(x,y){
   cor(x,y)
@@ -38,34 +41,53 @@ korelacja(wzrost, waga)
 
 
 #4. Napisz funkcję zwracającą ramke danych z danych podanych przez użytkownika 
-#stworzDataFrame <- function(ile=1) W pierwszym wierszu użytkownik podaje nazwy kolumn. 
-#w kolejnych wierszach zawartość wierszy ramki danych ( tyle wierszy ile podaliśmy w argumencie ile. 
-#ile=1 oznacza, że gdy użytkownik nie poda żadnej wartości jako parametr, domyślna wartością będzie 1)
+#stworzDataFrame <- function(ile=1) W pierwszym wierszu użytkownik 
+#podaje nazwy kolumn. 
+#w kolejnych wierszach zawartość wierszy ramki danych ( tyle wierszy 
+#ile podaliśmy w argumencie ile. 
+#ile=1 oznacza, że gdy użytkownik nie poda żadnej wartości jako parametr, 
+#domyślna wartością będzie 1)
 
 stworzDataFrame<-function(ile=1){
-  nazwyKol<-readline("Podaj nazwy kolumn rozdzielone przecinkami: ")
-  kolumny<-strsplit(nazwyKol,",")
-  df<-data.frame(matrix(NA, nrow=ile, ncol=lengths(kolumny)))
-  names(df)<-t(unlist(kolumny))
-  for(column in colnames(df)){
-    for(i in 1:ile){
-      odp<-readline("Podaj wartosc wiersza: ")
-      df[i, column]<-odp
-    }}
+  odp<-readline("Podaj nazwy kolumn rozdzielone przecinkami: ")
+  odp1<-unlist(strsplit(odp,","))
+  df<-data.frame(matrix(nrow=1, ncol=length(odp1)))
+  colnames(df)<-odp1
+  
+  for(i in 1:ile){
+    
+    odpWiersz<-readline("Podaj wartosci wierszy oddzielone przecinkami: ")
+    wiersz<-unlist(strsplit(odpWiersz, ','))
+    df<-rbind(df, wiersz)
+  }
   View(df)
 }
 stworzDataFrame()
 
-
-
-
-
-
-#5. Napisz funkcję , która pobiera sciezkeKatalogu, nazweKolumny, jakaFunkcje, DlaIluPlikow i liczy: 
-#mean, median,min,max w zależności od podanej nazwy funkcji w argumencie, z katologu który podaliśmy 
+#5. Napisz funkcję , która pobiera sciezkeKatalogu, nazweKolumny, jakaFunkcje, 
+#DlaIluPlikow i liczy: 
+#mean, median,min,max w zależności od podanej nazwy funkcji w argumencie, z 
+#katologu który podaliśmy 
 #i z tylu plików ilu podaliśmy dla wybranej nazwy kolumny. 
 
-
-liczZplikow <- function(sciezka,nazwaKolumny,jakaFunkcja="mean",DlaIluPlikow=1){ 
-  #...
-}
+liczZplikow <- function(sciezka, nazwaKolumny, jakaFunkcja="mean", DlaIluPlikow=1){
+  listaPlikow <- list.files(sciezka)
+  wynik=list()
+  Kolumny<-paste("X",nazwaKolumny, sep = "")
+  
+  for (i in 1:DlaIluPlikow){
+    wynik<-rbind(wynik, na.omit(read.csv(listaPlikow[i][Kolumny])))
+    if (jakaFunkcja == "mean"){result<-mean(wynik[[i]][,nazwaKolumny],na.rm=TRUE)
+    wynik[[i]] <- result
+    }else if (jakaFunkcja == "median"){result<-median(wynik[[i]][,nazwaKolumny],na.rm=TRUE)
+    wynik[[i]]<- result
+    }else if (jakaFunkcja == "min"){result<-min(wynik[[i]][,nazwaKolumny],na.rm=TRUE)
+    wynik[[i]]<- result
+    }else if (jakaFunkcja == "max"){result<-max(wynik[[i]][,nazwaKolumny],na.rm=TRUE)
+    wynik[[i]]<- result
+    }}
+    wynik
+  }
+  
+  liczZplikow('smogKrakow', 3_pressure, jakaFunkcja = 'mean', DlaIluPlikow = 3)
+  
